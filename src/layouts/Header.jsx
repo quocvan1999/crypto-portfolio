@@ -1,7 +1,13 @@
+/* eslint-disable no-unused-vars */
 import { SearchOutlined } from "@ant-design/icons";
 import { Flex, Input } from "antd";
+import { useSearchParams } from "react-router-dom";
 
 const Header = () => {
+  const [searchParam, setSearchParam] = useSearchParams();
+  const handleChangeInput = (value) => {
+    setSearchParam({ search: value });
+  };
   return (
     <div className="w-full bg-white shadow-sm">
       <Flex
@@ -15,6 +21,9 @@ const Header = () => {
           className="w-[30%]"
           placeholder="Search enter"
           prefix={<SearchOutlined />}
+          onChange={(e) => {
+            handleChangeInput(e.target.value);
+          }}
         />
       </Flex>
     </div>
